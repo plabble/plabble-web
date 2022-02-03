@@ -1,0 +1,36 @@
+{
+  "name": "plabble-webclient",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier .  --write"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "@tsconfig/svelte": "^2.0.1",
+    "node-sass": "^7.0.1",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
+    "svelte": "^3.44.0",
+    "svelte-check": "^2.2.7",
+    "svelte-preprocess": "^4.10.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "@stablelib/bytereader": "^1.0.1",
+    "@stablelib/bytes": "^1.0.1",
+    "@stablelib/bytewriter": "^1.0.1",
+    "@stablelib/chacha": "^1.0.1",
+    "@stablelib/ed25519": "^1.0.2",
+    "@stablelib/hkdf": "^1.0.1",
+    "@stablelib/sha256": "^1.0.1",
+    "@stablelib/x25519": "^1.0.1",
+    "fflate": "^0.7.3"
+  }
+}
