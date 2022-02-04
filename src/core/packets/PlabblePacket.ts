@@ -82,7 +82,7 @@ export class PlabblePacket {
    * @returns The _senderId field or calculated from the sender key
    */
   public get senderId(): Uint8Array {
-    return this._senderId === undefined ? sha.hash(this.senderKey).slice(0,20) : this._senderId;
+    return this._senderId === undefined ? sha.hash(this.senderKey).slice(0, 20) : this._senderId;
   }
 
   /**

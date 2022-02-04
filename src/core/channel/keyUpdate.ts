@@ -6,7 +6,7 @@ export class KeyUpdate {
    * The identifier of the user in the tree, can also be used for replacing key update
    */
   public identifier?: Uint8Array; //identifier NOT NEEDED in transport if not replacing-key-update
-  
+
   /**
    * The index of the node to be replaced (if replacing key update)
    */

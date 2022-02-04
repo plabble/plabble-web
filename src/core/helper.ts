@@ -14,7 +14,7 @@ export const serializer = {
   toHex(bytes: Uint8Array): string {
     return [...bytes].map(x => x.toString(16).padStart(2, '0')).join('');
   },
-  
+
   /***
    * Convert date to Plabble timestamp bytes
    */
@@ -48,7 +48,7 @@ export const serializer = {
     }
     return true;
   },
-  
+
   /*
   getFlagCount(flag: number): number {
     let cnt = 0;
