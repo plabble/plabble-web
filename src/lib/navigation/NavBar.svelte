@@ -1,20 +1,3 @@
-<nav>
-  <ul>
-    <li>
-      <span class="is-btn" on:click={() => console.log('menu toggled')}>
-        <MenuIcon size="32" />
-      </span>
-    </li>
-    
-    <li><strong>Plabble</strong></li>
-  </ul>
-  <ul>
-    <li>
-      <input type="search" placeholder="Search...">
-    </li>
-  </ul>
-</nav>
-
 <style lang="scss">
   nav {
     margin-left: 1rem;
@@ -27,5 +10,23 @@
 </style>
 
 <script lang="ts">
-  import { MenuIcon } from 'svelte-feather-icons';
+import Icon from "../Icon.svelte";
+
 </script>
+
+<nav>
+  <ul>
+    <li>
+      <span class="is-btn" on:click="{() => console.log('menu toggled')}">
+        <Icon name="menu" size={32} />
+      </span>
+    </li>
+
+    <li><strong>Plabble</strong></li>
+  </ul>
+  <ul>
+    <li>
+      <input type="search" placeholder="Search..." />
+    </li>
+  </ul>
+</nav>
