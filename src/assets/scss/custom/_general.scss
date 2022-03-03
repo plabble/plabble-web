@@ -1,0 +1,5 @@
+/* avoid scrolling on body */
+.no-scroll {
+  overflow: hidden !important;
+  position: fixed !important;
+}

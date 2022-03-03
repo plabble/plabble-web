@@ -1,103 +1,55 @@
+<!-- sadly we can't have two style tags, one global and one local. So local is nested inside <main> -->
 <style lang="scss" global>
   @import './src/assets/scss/pico.scss';
   @import './src/assets/scss/custom.scss';
 </style>
 
 <script lang="ts">
+  import { swipe } from 'svelte-gestures';
+
+  import Home from './lib/interface/Home.svelte';
+  import NavBar from './lib/navigation/NavBar.svelte';
+  import SideNav from './lib/navigation/SideNav.svelte';
+
   let dark = true;
+  let open = false;
+
   $: theme = dark ? 'dark' : 'light';
+
   $: {
-    console.log('Switching theme. current: ' + theme);
+    console.log('Switching theme. Was: ' + theme);
     document.documentElement.dataset['theme'] = theme;
   }
 
-  import NavBar from './lib/navigation/NavBar.svelte';
+  // Disable scrolling when sideNav is open
+  // Sadly, it is not possible (yet) to change body properties via the <svelte:body> attribute
+  $: {
+    if (open) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  // Swipe right for menu
+  function handleSwipe(event) {
+    if (event.detail?.direction === 'right') {
+      open = true;
+    }
+  }
+
+  function handleSearch(term: string) {
+    console.log('searching:', term);
+  }
 </script>
 
-<NavBar />
+<!-- touchAction 'pan-y' enables normal scrolling behavior on touch devices -->
+<svelte:body use:swipe="{{ minSwipeDistance: 100, timeframe: 300, touchAction: 'pan-y' }}" on:swipe="{handleSwipe}" />
 
-<main>
-  <style lang="scss">
-    main {
-      padding: 1em;
-    }
-  </style>
+<NavBar on:search="{e => handleSearch(e.detail)}" on:menu-click="{() => (open = true)}" />
 
-  <h1>Hello Plabble!</h1>
-  <div class="buttons">
-    <a role="button" href="#!" on:click="{() => (dark = !dark)}">Toggle dark/light theme</a>
-    <a role="button" href="#!" class="secondary">Secondary</a>
-    <a role="button" href="#!" class="outline">Primary outline</a>
-    <a role="button" href="#!" class="secondary outline">Secondary outline</a>
-  </div>
+<SideNav bind:open>
+  <p>Hello</p>
+</SideNav>
 
-  <br />
-
-  <div class="grid">
-    <div>
-      <fieldset>
-        <legend>Plabble Security</legend>
-        <label for="small">
-          <input type="radio" id="small" name="size" value="small" />
-          Extreme
-        </label>
-        <label for="medium">
-          <input type="radio" id="medium" name="size" value="medium" />
-          Very extreme
-        </label>
-        <label for="large">
-          <input type="radio" id="large" name="size" value="large" checked />
-          Insane
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <label for="terms">
-          <input type="checkbox" id="terms" name="terms" />
-          I agree to the Terms and Conditions
-        </label>
-        <label for="terms_sharing">
-          <input type="checkbox" id="terms_sharing" name="terms_sharing" checked />
-          I agree to share my information with Google
-        </label>
-      </fieldset>
-
-      <!-- Switches -->
-      <fieldset>
-        <label for="switch">
-          <input type="checkbox" id="switch" name="switch" role="switch" />
-          Enable session hijacking on my teacher
-        </label>
-        <label for="switch_disabled">
-          <input type="checkbox" id="switch_disabled" name="switch_disabled" role="switch_disabled" disabled checked />
-          Publish on my profile my accomplishments
-        </label>
-      </fieldset>
-    </div>
-
-    <div>
-      <!-- Date -->
-      <label for="date"
-        >Date
-        <input type="date" id="date" name="date" />
-      </label>
-
-      <!-- Time -->
-      <label for="time"
-        >Time
-        <input type="time" id="time" name="time" />
-      </label>
-
-      <!-- Range slider -->
-      <label for="range"
-        >Range slider
-        <input type="range" min="0" max="100" value="50" id="range" name="range" />
-      </label>
-
-      <label for="firstname">
-        First name
-        <input type="text" id="firstname" name="firstname" placeholder="First name" required />
-      </label>
-    </div>
-  </div>
-</main>
+<Home />

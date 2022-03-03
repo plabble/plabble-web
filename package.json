@@ -30,6 +30,7 @@
     "@stablelib/hkdf": "^1.0.1",
     "@stablelib/sha256": "^1.0.1",
     "@stablelib/x25519": "^1.0.1",
-    "fflate": "^0.7.3"
+    "fflate": "^0.7.3",
+    "svelte-gestures": "^1.4.1"
   }
 }

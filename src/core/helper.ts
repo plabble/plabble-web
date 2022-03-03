@@ -5,11 +5,11 @@ const EPOCH = 1577836800; //2020-01-01T00:00:00
 export const serializer = {
   fromBase64(base64: string): Uint8Array {
     //atob is a browser function for converting base64 to byte string
-    return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    return Uint8Array.from(window.atob(base64), c => c.charCodeAt(0));
   },
   toBase64(bytes: Uint8Array): string {
     //btoa is a browser function for converting byte string to base64
-    return btoa(String.fromCharCode(...bytes));
+    return window.btoa(String.fromCharCode(...bytes)).replaceAll('=', '');
   },
   toHex(bytes: Uint8Array): string {
     return [...bytes].map(x => x.toString(16).padStart(2, '0')).join('');
@@ -48,25 +48,16 @@ export const serializer = {
     }
     return true;
   },
-
-  /*
-  getFlagCount(flag: number): number {
-    let cnt = 0;
-    for (let i = 7; i >= 0; i--) cnt += (flag >> i) & 1;
-    return cnt;
-  },
-  getFlags(flag: number): number[] {
-    const types: number[] = [];
-    for (let i = 0; i <= 8; i++) {
-      const f = 1 << i;
-      if ((flag & f) == f) types.push(f);
-    }
-    return types;
-  },
+  
+  /**
+   * Check if specific bit is set
+   * @param nr The value to check the bits in
+   * @param pos The bit position
+   * @returns True if bit is set
+   */
   isBitSet(nr: number, pos: number): boolean {
     return (nr & (1 << pos)) != 0;
   },
-  */
 
   /**
    * Get UTF-8 bytes from string
