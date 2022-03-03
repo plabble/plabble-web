@@ -1,0 +1,25 @@
+/* Bubble theme */
+.message-holder[data-theme='bubble'] {
+  >.chat-message {
+    position: relative;
+    max-width: 70%;
+    background: #fff;
+    border-radius: 1em;
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    text-align: left;
+    color: #000;
+    margin: 0.3em;
+
+    &.me {
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+
+    &.you {
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

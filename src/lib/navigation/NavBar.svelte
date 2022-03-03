@@ -1,10 +1,6 @@
 <style lang="scss">
   nav {
-    /*position: sticky;
-    top: 0;
-    left: 0;*/
     background-color: var(--background-color);
-    z-index: 1;
     width: 100%;
 
     & > ul {

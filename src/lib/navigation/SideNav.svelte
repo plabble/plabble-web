@@ -1,5 +1,5 @@
 <style lang="scss">
-  @import '../../assets/scss/_variables.scss';
+  @import '../../assets/scss/custom.scss';
 
   .sidenav {
     position: absolute;
@@ -9,32 +9,24 @@
     z-index: 1000;
     background-color: var(--card-background-color);
 
-    @if map-get($breakpoints, 'sm') {
-      @media (max-width: map-get($breakpoints, 'md')) {
-        width: 80%;
-        max-width: 80%;
-      }
+    @include respondTo('sm') {
+      width: 80%;
+      max-width: 80%;
     }
 
-    @if map-get($breakpoints, 'md') {
-      @media (min-width: map-get($breakpoints, 'md')) {
-        width: 40%;
-        max-width: 40%;
-      }
+    @include respondTo('md') {
+      width: 40%;
+      max-width: 40%;
     }
 
-    @if map-get($breakpoints, 'lg') {
-      @media (min-width: map-get($breakpoints, 'lg')) {
-        width: 30%;
-        max-width: 30%;
-      }
+    @include respondTo('lg') {
+      width: 30%;
+      max-width: 30%;
     }
 
-    @if map-get($breakpoints, 'xl') {
-      @media (min-width: map-get($breakpoints, 'xl')) {
-        width: 25%;
-        max-width: 25%;
-      }
+    @include respondTo('xl') {
+      width: 25%;
+      max-width: 25%;
     }
   }
 
